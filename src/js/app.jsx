@@ -40,6 +40,12 @@ export default class App extends React.Component {
   // }
 
   calculate(balance, rate, term) {
+    // eslint-disable-next-line no-param-reassign
+    balance = this.state.balance;
+    // eslint-disable-next-line no-param-reassign
+    rate = this.state.rate;
+    // eslint-disable-next-line no-param-reassign
+    term = this.state.term;
     const p = balance;
     const r = (rate / 100) / 12;
     const n = term * 12;
@@ -52,9 +58,7 @@ export default class App extends React.Component {
 
   render() {
     // we can use Console.log only in render function
-    console.log(`this is monthly payment : ${this.monthlyPayment}`);
     return (
-      // eslint-disable-next-line react/jsx-no-comment-textnodes
       <div className='container' style={ { margin: '20%' } } >
         <input
           name='balance'
@@ -85,7 +89,7 @@ export default class App extends React.Component {
         </select>
         < button
           type='submit'
-          onClick={ () => this.calculate(this.state.balance, this.state.rate, this.state.term) }
+          onClick={ this.calculate }
           style={ { marginLeft: '35%', marginTop: '5%' } }
         >
           Calculate
